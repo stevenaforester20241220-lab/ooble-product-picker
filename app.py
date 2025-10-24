@@ -100,3 +100,7 @@ async def select_products(request: Request):
     ])
     html = f"<section style='display:grid;grid-template-columns:repeat(3,1fr);gap:12px'>{html_tiles}</section>"
     return {"palette_hex":["#D38C1F","#B85C38","#E2B46D"],"products":results[:9],"html":html}
+@app.get("/")
+def root():
+    return {"status": "ok", "message": "Ooble product picker running"}
+
