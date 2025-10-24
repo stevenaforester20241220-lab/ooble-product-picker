@@ -10,7 +10,7 @@ app = FastAPI()
 WOO_BASE = os.getenv("WOO_BASE_URL", "https://ooblehome.com").rstrip("/")
 WOO_KEY = os.getenv("WOO_KEY")
 WOO_SECRET = os.getenv("WOO_SECRET")
-HMAC_SECRET = os.getenv("ACTION_HMAC_SECRET", "test").encode()
+HMAC_SECRET = os.getenv("OOBLE_SHARED_SECRET", "test").encode()
 
 _cache_products = {"ts": 0, "items": []}
 _cache_colors = {}
@@ -103,4 +103,5 @@ async def select_products(request: Request):
 @app.get("/")
 def root():
     return {"status": "ok", "message": "Ooble product picker running"}
+
 
