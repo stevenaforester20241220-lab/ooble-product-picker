@@ -96,13 +96,14 @@ async def select_products(request: Request):
         })
     html_tiles = "".join([
         f"<article><img src='{r['image_url']}' alt='{r['title']}' style='width:100%;height:200px;object-fit:cover;border-radius:8px'><a href='{r['product_url']}' target='_blank'>View</a><a href='{r['image_url']}' target='_blank'>Get image</a></article>"
-        for r in results[:9]
+        for r in results[:3]
     ])
     html = f"<section style='display:grid;grid-template-columns:repeat(3,1fr);gap:12px'>{html_tiles}</section>"
     return {"palette_hex":["#D38C1F","#B85C38","#E2B46D"],"products":results[:9],"html":html}
 @app.get("/")
 def root():
     return {"status": "ok", "message": "Ooble product picker running"}
+
 
 
 
