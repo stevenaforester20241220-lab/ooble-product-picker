@@ -16,8 +16,8 @@ _cache_products = {"ts": 0, "items": []}
 _cache_colors = {}
 
 def verify_hmac(body: bytes, sig: str):
-    mac = hmac.new(HMAC_SECRET, body, hashlib.sha256).hexdigest()
-    if not hmac.compare_digest(mac, sig.lower()):
+    expected = os.getenv("OOBLE_SHARED_SECRET", "").strip().lower()
+    if sig.lower() != expected:
         raise HTTPException(401, "Bad signature")
 
 async def fetch_products():
@@ -103,5 +103,6 @@ async def select_products(request: Request):
 @app.get("/")
 def root():
     return {"status": "ok", "message": "Ooble product picker running"}
+
 
 
